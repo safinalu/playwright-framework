@@ -5,6 +5,7 @@ import com.safina.lyudmila.tests.ui.playwrightframework.factory.PlaywrightFactor
 import com.safina.lyudmila.tests.ui.playwrightframework.pages.HomePage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
+@Disabled
 public class HomePageTest {
 
     PlaywrightFactory pf;
