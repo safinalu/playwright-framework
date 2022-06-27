@@ -2,6 +2,7 @@ package com.safina.lyudmila.tests.ui.playwrightframework.pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.options.MouseButton;
 import lombok.Getter;
 
 @Getter
@@ -24,7 +25,9 @@ public class AgGridPage extends DefaultPage {
     public void acceptAllCookies() {
 
         page.waitForLoadState();
-        page.click(acceptCookies);
+        if (page.locator(acceptCookies).isVisible()) {
+            page.click(acceptCookies);
+        }
     }
 
     public void scrollTableToRight() {
@@ -82,18 +85,18 @@ public class AgGridPage extends DefaultPage {
 
         Locator expectedCell = page.locator("div.ag-cell[col-id='" + index + "'] >> text='" + value + "'");
 
-        if (!expectedCell.isVisible()) {
+        if (!expectedCell.first().isVisible()) {
             while (!page.locator(firstTableColumn).isVisible()) {
                 scrollTableUp();
             }
         }
 
       //  page.pause();
-        while (!expectedCell.isVisible()) {
+        while (!expectedCell.first().isVisible()) {
             scrollTableDown();
         }
 
-        return expectedCell.textContent();
+        return expectedCell.first().textContent();
     }
 
     private String getColumnLocator(String columnName) {

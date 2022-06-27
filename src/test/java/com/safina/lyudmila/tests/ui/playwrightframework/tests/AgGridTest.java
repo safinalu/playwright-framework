@@ -2,6 +2,7 @@ package com.safina.lyudmila.tests.ui.playwrightframework.tests;
 
 import com.safina.lyudmila.tests.ui.playwrightframework.pages.AgGridPage;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -15,6 +16,7 @@ public class AgGridTest extends DefaultTest {
     AgGridPage agGridPage;
 
     @Override
+    @BeforeEach
     public void initializeObjects() {
 
         agGridPage = new AgGridPage(page);
@@ -28,10 +30,11 @@ public class AgGridTest extends DefaultTest {
         assertThat(columnName + " column visible", agGridPage.columnVisible(columnName), equalTo(true));
     }
 
-    @Test
-    public void checkValueInColumn() {
-        String result = agGridPage.findValueInColumn("Name", "Daisy Kobe");
-        assertThat("Cell with value 'Daisy Kobe' found", result, equalTo("Daisy Kobe"));
+    @ParameterizedTest
+    @CsvFileSource(files = "src/test/resources/testdata/agGridColumnValues.csv", numLinesToSkip = 1, delimiter = '|')
+    public void checkValueInColumn(String columnName, String columnValue) {
+        String result = agGridPage.findValueInColumn(columnName, columnValue);
+        assertThat("Cell with value '" + columnValue + "' found", result, equalTo(columnValue));
     }
 
 }
