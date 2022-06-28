@@ -2,8 +2,12 @@ package com.safina.lyudmila.tests.ui.playwrightframework.pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.options.LoadState;
 import com.microsoft.playwright.options.MouseButton;
 import lombok.Getter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 public class AgGridPage extends DefaultPage {
@@ -15,46 +19,50 @@ public class AgGridPage extends DefaultPage {
     private final String firstTableColumn = "div.ag-header-cell[role='columnheader'][aria-colindex='1']";
     private final String firstTableRow = "div.ag-row[row-id='0']:has(div.ag-cell)";
     private final String columnLocator = "div.ag-header-cell:has(span[ref='eText']:text-is('${columnName}'))";
+    private final int height;
+    private final int width;
 
 
     public AgGridPage(Page page) {
         super(page);
         this.page = page;
+        this.height = page.viewportSize().height;
+        this.width = page.viewportSize().width;
     }
 
     public void acceptAllCookies() {
 
         page.waitForLoadState();
-        if (page.locator(acceptCookies).isVisible()) {
+      /*  if (page.locator(acceptCookies).isVisible() && page.locator(acceptCookies).isEnabled()) {
             page.click(acceptCookies);
-        }
+        }*/
     }
 
     public void scrollTableToRight() {
         page.evaluate(
                 "var scroll = document.querySelector('" + horizontalScroll + "'); " +
-                        "scroll.scrollBy(100, 0);"
+                        "scroll.scrollBy(" + height/2 + ", 0);"
         );
     }
 
     public void scrollTableToLeft() {
         page.evaluate(
                 "var scroll = document.querySelector('" + horizontalScroll + "'); " +
-                        "scroll.scrollBy(-100, 0);"
+                        "scroll.scrollBy(-" + height/2 + ", 0);"
         );
     }
 
     public void scrollTableDown() {
         page.evaluate(
                 "var scroll = document.querySelector('" + tableContent + "'); " +
-                        "scroll.scrollBy(0, 100);"
+                        "scroll.scrollBy(0, " + width/2 + ");"
         );
     }
 
     public void scrollTableUp() {
         page.evaluate(
                 "var scroll = document.querySelector('" + tableContent + "'); " +
-                        "scroll.scrollBy(0, -100);"
+                        "scroll.scrollBy(0, -" + width/2 + ");"
         );
     }
 
@@ -67,8 +75,20 @@ public class AgGridPage extends DefaultPage {
             }
         }
 
-        while (!expectedColumn.isVisible()) {
-            scrollTableToRight();
+        Locator visibleColumns = page.locator("div.ag-header-cell:has(span[ref='eText']) >> visible=true");
+        List<String> columnNames;
+        if (!expectedColumn.isVisible()) {
+            int i = 0;
+            do {
+                page.waitForLoadState(LoadState.LOAD);
+                columnNames = visibleColumns.allInnerTexts();
+                scrollTableToRight();
+                if (visibleColumns.allInnerTexts().containsAll(columnNames)) {
+                    i++;
+                } else {
+                    i = 0;
+                }
+            } while (!expectedColumn.isVisible() && (!visibleColumns.allInnerTexts().containsAll(columnNames) || i < 5));
         }
     }
 

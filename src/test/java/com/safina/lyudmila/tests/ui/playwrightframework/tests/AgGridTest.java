@@ -1,6 +1,7 @@
 package com.safina.lyudmila.tests.ui.playwrightframework.tests;
 
 import com.safina.lyudmila.tests.ui.playwrightframework.pages.AgGridPage;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,6 +26,7 @@ public class AgGridTest extends DefaultTest {
 
     @ParameterizedTest
     @CsvFileSource(files = "src/test/resources/testdata/agGridColumnNames.csv", numLinesToSkip = 1)
+   // @Step("Check column {columnName}")
     public void checkColumn(String columnName) {
         agGridPage.scrollTableUntilColumn(columnName);
         assertThat(columnName + " column visible", agGridPage.columnVisible(columnName), equalTo(true));
@@ -36,5 +38,7 @@ public class AgGridTest extends DefaultTest {
         String result = agGridPage.findValueInColumn(columnName, columnValue);
         assertThat("Cell with value '" + columnValue + "' found", result, equalTo(columnValue));
     }
+
+
 
 }
