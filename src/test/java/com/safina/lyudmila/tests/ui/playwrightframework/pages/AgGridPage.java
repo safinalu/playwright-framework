@@ -1,13 +1,12 @@
 package com.safina.lyudmila.tests.ui.playwrightframework.pages;
 
+import java.util.List;
+
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.LoadState;
-import com.microsoft.playwright.options.MouseButton;
-import lombok.Getter;
 
-import java.util.ArrayList;
-import java.util.List;
+import lombok.Getter;
 
 @Getter
 public class AgGridPage extends DefaultPage {

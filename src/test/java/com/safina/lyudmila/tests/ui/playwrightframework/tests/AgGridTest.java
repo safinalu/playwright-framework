@@ -1,15 +1,14 @@
 package com.safina.lyudmila.tests.ui.playwrightframework.tests;
 
-import com.safina.lyudmila.tests.ui.playwrightframework.pages.AgGridPage;
-import lombok.extern.slf4j.Slf4j;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
+import com.safina.lyudmila.tests.ui.playwrightframework.pages.AgGridPage;
 
-@Slf4j
 public class AgGridTest extends DefaultTest {
 
     AgGridPage agGridPage;

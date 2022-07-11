@@ -1,13 +1,15 @@
 package com.safina.lyudmila.tests.ui.playwrightframework.factory;
 
-import com.microsoft.playwright.*;
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-@Slf4j
+import com.microsoft.playwright.Browser;
+import com.microsoft.playwright.BrowserContext;
+import com.microsoft.playwright.BrowserType;
+import com.microsoft.playwright.Page;
+import com.microsoft.playwright.Playwright;
+
 public class PlaywrightFactory {
 
     static Playwright playwright;
