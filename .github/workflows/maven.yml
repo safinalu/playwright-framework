@@ -70,4 +70,4 @@ jobs:
             context: 'Test Results Link'
             state: 'success'
             sha: ${{ github.sha }}
-            target_url: https://safinalu.github.io/allure-html-reporter-github-pages/${{ github.run_number }}
+            target_url: https://safinalu.github.io/playwright-framework/${{ github.run_number }}
