@@ -1,14 +1,10 @@
 package com.safina.lyudmila.tests.ui.playwrightframework.factory;
 
+import com.microsoft.playwright.*;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
-
-import com.microsoft.playwright.Browser;
-import com.microsoft.playwright.BrowserContext;
-import com.microsoft.playwright.BrowserType;
-import com.microsoft.playwright.Page;
-import com.microsoft.playwright.Playwright;
 
 public class PlaywrightFactory {
 
@@ -25,25 +21,28 @@ public class PlaywrightFactory {
 
     public PlaywrightFactory() throws IOException {
         initProperties();
+
         if (playwright == null) {
             playwright = Playwright.create();
         }
+
         switch (browserName.toLowerCase().trim()) {
-            case "edge" :
+          /*  case "edge":
                 browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setChannel("msedge").setHeadless(headless));
                 break;
-            case "chrome" :
+            case "chrome":
                 browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setChannel("chrome").setHeadless(headless));
                 break;
-            case "firefox" :
+            case "firefox":
                 browser = playwright.firefox().launch(new BrowserType.LaunchOptions().setHeadless(headless));
                 break;
-            case "safari" :
+            case "safari":
                 browser = playwright.webkit().launch(new BrowserType.LaunchOptions().setHeadless(headless));
-                break;
+                break;*/
             default:
                 browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(headless));
         }
+
     }
 
     public Page initBrowser() {
@@ -58,11 +57,11 @@ public class PlaywrightFactory {
         String appConfigPath = rootPath + "application.properties";
 
         Properties appProps = new Properties();
+
         appProps.load(new FileInputStream(appConfigPath));
 
         browserName = appProps.getProperty("playwright.browser", "");
         defaultUrl = appProps.getProperty("playwright.url");
         headless = Boolean.parseBoolean(appProps.getProperty("playwright.headless", "true"));
     }
-
 }
