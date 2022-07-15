@@ -3,7 +3,6 @@ package com.safina.lyudmila.tests.ui.playwrightframework.tests;
 import com.microsoft.playwright.Page;
 import com.safina.lyudmila.tests.ui.playwrightframework.factory.PlaywrightFactory;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
