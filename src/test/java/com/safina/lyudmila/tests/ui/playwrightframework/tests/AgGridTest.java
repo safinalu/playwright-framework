@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 import com.safina.lyudmila.tests.ui.playwrightframework.pages.AgGridPage;
 
+@Disabled
 public class AgGridTest extends DefaultTest {
 
     AgGridPage agGridPage;
