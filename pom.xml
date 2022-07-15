@@ -135,7 +135,7 @@
                             <value>true</value>
                         </property>
                     </systemProperties>
-                    <reportsDirectory>${basedir}/allure-results</reportsDirectory>
+                    <reportsDirectory>${basedir}/allure-results/surefire-reports</reportsDirectory>
                 </configuration>
                 <dependencies>
                     <dependency>
