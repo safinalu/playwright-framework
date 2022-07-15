@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Disabled;
 
 import com.safina.lyudmila.tests.ui.playwrightframework.pages.AgGridPage;
 
-@Disabled
 public class AgGridTest extends DefaultTest {
 
     AgGridPage agGridPage;
