@@ -23,6 +23,7 @@ public class HomePageTest {
 
     HomePage homePage;
     
+    
     @BeforeEach
     public void initialize() throws IOException {
         pf = new PlaywrightFactory();
