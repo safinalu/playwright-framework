@@ -22,6 +22,7 @@ public class HomePageTest {
     Page page;
 
     HomePage homePage;
+    
 
     @BeforeEach
     public void initialize() throws IOException {
