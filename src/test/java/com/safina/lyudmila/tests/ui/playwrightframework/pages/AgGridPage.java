@@ -40,28 +40,28 @@ public class AgGridPage extends DefaultPage {
     public void scrollTableToRight() {
         page.evaluate(
                 "var scroll = document.querySelector('" + horizontalScroll + "'); " +
-                        "scroll.scrollBy(" + height/2 + ", 0);"
+                        "scroll.scrollBy(" + height/3 + ", 0);"
         );
     }
 
     public void scrollTableToLeft() {
         page.evaluate(
                 "var scroll = document.querySelector('" + horizontalScroll + "'); " +
-                        "scroll.scrollBy(-" + height/2 + ", 0);"
+                        "scroll.scrollBy(-" + height/3 + ", 0);"
         );
     }
 
     public void scrollTableDown() {
         page.evaluate(
                 "var scroll = document.querySelector('" + tableContent + "'); " +
-                        "scroll.scrollBy(0, " + width/2 + ");"
+                        "scroll.scrollBy(0, " + width/3 + ");"
         );
     }
 
     public void scrollTableUp() {
         page.evaluate(
                 "var scroll = document.querySelector('" + tableContent + "'); " +
-                        "scroll.scrollBy(0, -" + width/2 + ");"
+                        "scroll.scrollBy(0, -" + width/3 + ");"
         );
     }
 
