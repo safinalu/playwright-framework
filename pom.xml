@@ -19,7 +19,7 @@
         <allure.junit.version>2.18.1</allure.junit.version>
         <allure.maven.version>2.11.2</allure.maven.version>
         <aspectj.version>1.8.10</aspectj.version>
-        <mockserver.version>5.13.2</mockserver.version>
+        <mockserver.version>5.14.0</mockserver.version>
         <testcontainers.version>1.17.3</testcontainers.version>
         <selenium.version>4.3.0</selenium.version>
     </properties>
